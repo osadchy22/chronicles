@@ -32,4 +32,8 @@ postgres_data/
 
 # Certificates / local runtime data
 certbot/conf/
+<<<<<<< HEAD
 certbot/www/
+=======
+certbot/www/
+>>>>>>> origin/development
