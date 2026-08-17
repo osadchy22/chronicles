@@ -1,13 +1,35 @@
+# Environment / secrets
 .env
-*.log
+.env.*
+!.env.example
+
+# Python
 .venv/
+venv/
 __pycache__/
 *.py[cod]
-*.pyc
+*.pyo
+
+# Testing / tooling
 .pytest_cache/
 .mypy_cache/
+.ruff_cache/
+
+# IDE
 .idea/
 .vscode/
+
+# OS
 .DS_Store
 Thumbs.db
+
+# Database
 postgres_data/
+*.sql
+
+# Logs
+*.log
+
+# Certificates / local runtime data
+certbot/conf/
+certbot/www/
