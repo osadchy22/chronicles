@@ -1,11 +1,7 @@
 from logging.config import fileConfig
-from pathlib import Path
-import sys
 
 from alembic import context
 from sqlalchemy import create_engine, pool
-
-sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from app.config import settings
 from app.database.base import Base
@@ -15,11 +11,6 @@ config = context.config
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
-
-config.set_main_option(
-    "sqlalchemy.url",
-    settings.database_url,
-)
 
 target_metadata = Base.metadata
 
