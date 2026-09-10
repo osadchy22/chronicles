@@ -3,6 +3,18 @@ const tg = window.Telegram.WebApp;
 tg.ready();
 tg.expand();
 
+document.addEventListener("DOMContentLoaded", () => {
+    const tg = window.TelegramApp?.init();
+
+    if (tg) {
+        console.log("Telegram WebApp initialized");
+        console.log("Platform:", tg.platform);
+        console.log("Version:", tg.version);
+    } else {
+        console.log("Running outside Telegram");
+    }
+});
+
 async function testApi() {
     try {
         const response = await fetch("api/test");
