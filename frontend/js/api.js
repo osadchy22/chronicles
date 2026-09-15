@@ -1,10 +1,11 @@
-const API_URL = " ";
+const API_URL = "";
 
 async function authenticate() {
-    const initData = window.Telegram?.WebApp?.initData || " ";
+    const initData = window.Telegram?.WebApp?.initData || "";
 
     console.log(
-        "Telegram initData:", initData
+        "Telegram initData available:",
+        Boolean(initData)
     );
 
     if (!initData) {

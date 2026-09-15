@@ -1,10 +1,7 @@
-const tg = window.Telegram.WebApp;
+let tg = null;
 
-tg.ready();
-tg.expand();
-
-document.addEventListener("DOMContentLoaded", () => {
-    const tg = window.TelegramApp?.init();
+document.addEventListener("DOMContentLoaded", async () => {
+    tg = window.TelegramApp?.init();
 
     if (tg) {
         console.log("Telegram WebApp initialized");
@@ -13,30 +10,22 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         console.log("Running outside Telegram");
     }
+
+    await start();
 });
 
-async function testApi() {
-    try {
-        const response = await fetch("api/test");
-
-        const data = await response.json();
-
-        console.log("API TEST SUCCESS:", data);
-    }
-
-    catch (error) {
-        console.error("API TEST FAILED:", error);
-    }
-}
-
-testApi();
 
 async function start() {
     const app = document.getElementById("app");
 
     try {
         console.log("Telegram object:", tg);
-        console.log("Telegram initData:", tg.initData);
+
+        if (!tg) {
+            throw new Error(
+                "Telegram WebApp недоступен. Открой игру через Telegram."
+            );
+        }
 
         const auth = await authenticate();
 
@@ -115,5 +104,3 @@ function escapeHtml(value) {
         .replaceAll('"', "&quot;")
         .replaceAll("'", "'");
 }
-
-start();
